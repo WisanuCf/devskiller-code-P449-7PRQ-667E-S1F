@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="8" skipped="0" tests="23" time="0.073" timestamp="2024-12-24T12:37:42.486855" hostname="MacBook-Air-khxng-Macbooks.local"><testcase classname="test.test_attendance.TestAttendance" name="test_attendance_attr" file="test/test_attendance.py" line="4" time="0.001"><failure message="AttributeError: 'Student' object has no attribute 'student_id'">self = &lt;test.test_attendance.TestAttendance object at 0x106454050&gt;
+
+    def test_attendance_attr(self):
+        fetch_student = FetchStudentDetails()
+        result = fetch_student.get_data()
+&gt;       fetch_student.get_attendance()
+
+test/test_attendance.py:8: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;app.fetch_student_details.FetchStudentDetails object at 0x1064544d0&gt;
+attendance_file_name = 'app/data/attendance.csv'
+
+    def get_attendance(self, attendance_file_name='app/data/attendance.csv'):
+        with open(attendance_file_name, mode='r') as file:
+            csv_reader = csv.reader(file)
+            for row in csv_reader:
+                student_id = int(row[0])
+                attended = row[1] == 'Y'
+                for student in self.student_list:
+&gt;                   if student.student_id == student_id and attended:
+E                   AttributeError: 'Student' object has no attribute 'student_id'
+
+app/fetch_student_details.py:53: AttributeError</failure></testcase><testcase classname="test.test_attendance.TestAttendance" name="test_attendance_simple" file="test/test_attendance.py" line="11" time="0.000"><failure message="AttributeError: 'Student' object has no attribute 'student_id'">self = &lt;test.test_attendance.TestAttendance object at 0x106455220&gt;
+
+    def test_attendance_simple(self):
+        fetch_student = FetchStudentDetails()
+        result = fetch_student.get_data()
+&gt;       fetch_student.get_attendance()
+
+test/test_attendance.py:15: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;app.fetch_student_details.FetchStudentDetails object at 0x106454aa0&gt;
+attendance_file_name = 'app/data/attendance.csv'
+
+    def get_attendance(self, attendance_file_name='app/data/attendance.csv'):
+        with open(attendance_file_name, mode='r') as file:
+            csv_reader = csv.reader(file)
+            for row in csv_reader:
+                student_id = int(row[0])
+                attended = row[1] == 'Y'
+                for student in self.student_list:
+&gt;                   if student.student_id == student_id and attended:
+E                   AttributeError: 'Student' object has no attribute 'student_id'
+
+app/fetch_student_details.py:53: AttributeError</failure></testcase><testcase classname="test.test_get_data.TestGetData" name="test_record_count" file="test/test_get_data.py" line="6" time="0.000" /><testcase classname="test.test_get_data.TestGetData" name="test_clean_headers" file="test/test_get_data.py" line="11" time="0.000" /><testcase classname="test.test_get_data.TestGetData" name="test_age_integer" file="test/test_get_data.py" line="17" time="0.000" /><testcase classname="test.test_get_data.TestGetData" name="test_avg_score_sum" file="test/test_get_data.py" line="22" time="0.000" /><testcase classname="test.test_special_student.TestSuperStudent" name="test_get_super_student" file="test/test_special_student.py" line="7" time="0.000"><failure message="AttributeError: 'Student' object has no attribute 'student_id'">self = &lt;test.test_special_student.TestSuperStudent object at 0x106584c20&gt;
+
+    def test_get_super_student(self):
+        fetch_student = FetchStudentDetails()
+        fetch_student.get_data()
+&gt;       super_student = fetch_student.get_super_student()
+
+test/test_special_student.py:11: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;app.fetch_student_details.FetchStudentDetails object at 0x106585070&gt;
+
+    def get_super_student(self):
+        max_score = -1
+        super_student = None
+        for student in self.student_list:
+            score = student.average_score
+            if 'computer science' in student.subjects:
+                score += 5
+            if 'maths' in student.subjects:
+                score += 10
+            if student.name.startswith('y'):
+                score += 15
+&gt;           if student.student_id % 2 == 0:
+E           AttributeError: 'Student' object has no attribute 'student_id'
+
+app/fetch_student_details.py:37: AttributeError</failure></testcase><testcase classname="test.structure.test_fetch_student_details.StructureTestSuite" name="test_class_exists_fetchstudentdetails" file="test/structure/test_fetch_student_details.py" line="11" time="0.000" /><testcase classname="test.structure.test_fetch_student_details.StructureTestSuite" name="test_class_function_exists_fetchstudentdetails___init__" file="test/structure/test_fetch_student_details.py" line="21" time="0.000" /><testcase classname="test.structure.test_fetch_student_details.StructureTestSuite" name="test_class_function_exists_fetchstudentdetails_clean_input" file="test/structure/test_fetch_student_details.py" line="94" time="0.000"><failure message="AssertionError: 'FetchStudentDetails.clean_input' not found in ['FetchStudentDetails.__init__', 'FetchStudentDetails.get_attendance', 'FetchStudentDetails.get_data', 'FetchStudentDetails.get_super_student'] : The function `FetchStudentDetails.clean_input` is not found in class `FetchStudentDetails`, but it was marked as required.">self = &lt;test.structure.test_fetch_student_details.StructureTestSuite testMethod=test_class_function_exists_fetchstudentdetails_clean_input&gt;
+
+    def test_class_function_exists_fetchstudentdetails_clean_input(self):
+        classes = _get_class_names(self.MODULE)
+        self.assertIn(
+            base64.b64decode(b"RmV0Y2hTdHVkZW50RGV0YWlscw==").decode(),
+            classes,
+            msg=f"The class "
+            f"`{base64.b64decode(b'RmV0Y2hTdHVkZW50RGV0YWlscw==').decode()}` "
+            f"is not found, but it was marked as required.",
+        )
+        functions = _get_class_function_names(
+            self.MODULE, base64.b64decode(b"RmV0Y2hTdHVkZW50RGV0YWlscw==").decode()
+        )
+&gt;       self.assertIn(
+            base64.b64decode(b"RmV0Y2hTdHVkZW50RGV0YWlscy5jbGVhbl9pbnB1dA==").decode(),
+            functions,
+            msg=f"The function "
+            f"`{base64.b64decode(b'RmV0Y2hTdHVkZW50RGV0YWlscy5jbGVhbl9pbnB1dA==').decode()}` "
+            f"is not found in class "
+            f"`{base64.b64decode(b'RmV0Y2hTdHVkZW50RGV0YWlscw==').decode()}`, "
+            f"but it was marked as required.",
+        )
+E       AssertionError: 'FetchStudentDetails.clean_input' not found in ['FetchStudentDetails.__init__', 'FetchStudentDetails.get_attendance', 'FetchStudentDetails.get_data', 'FetchStudentDetails.get_super_student'] : The function `FetchStudentDetails.clean_input` is not found in class `FetchStudentDetails`, but it was marked as required.
+
+test/structure/test_fetch_student_details.py:107: AssertionError</failure></testcase><testcase classname="test.structure.test_fetch_student_details.StructureTestSuite" name="test_class_function_exists_fetchstudentdetails_get_attendance" file="test/structure/test_fetch_student_details.py" line="167" time="0.000" /><testcase classname="test.structure.test_fetch_student_details.StructureTestSuite" name="test_class_function_exists_fetchstudentdetails_get_data" file="test/structure/test_fetch_student_details.py" line="265" time="0.000" /><testcase classname="test.structure.test_fetch_student_details.StructureTestSuite" name="test_class_function_exists_fetchstudentdetails_get_super_student" file="test/structure/test_fetch_student_details.py" line="353" time="0.000" /><testcase classname="test.structure.test_fetch_student_details.StructureTestSuite" name="test_class_function_exists_fetchstudentdetails_map_csv_to_class" file="test/structure/test_fetch_student_details.py" line="434" time="0.000"><failure message="AssertionError: 'FetchStudentDetails.map_csv_to_class' not found in ['FetchStudentDetails.__init__', 'FetchStudentDetails.get_attendance', 'FetchStudentDetails.get_data', 'FetchStudentDetails.get_super_student'] : The function `FetchStudentDetails.map_csv_to_class` is not found in class `FetchStudentDetails`, but it was marked as required.">self = &lt;test.structure.test_fetch_student_details.StructureTestSuite testMethod=test_class_function_exists_fetchstudentdetails_map_csv_to_class&gt;
+
+    def test_class_function_exists_fetchstudentdetails_map_csv_to_class(self):
+        classes = _get_class_names(self.MODULE)
+        self.assertIn(
+            base64.b64decode(b"RmV0Y2hTdHVkZW50RGV0YWlscw==").decode(),
+            classes,
+            msg=f"The class "
+            f"`{base64.b64decode(b'RmV0Y2hTdHVkZW50RGV0YWlscw==').decode()}` "
+            f"is not found, but it was marked as required.",
+        )
+        functions = _get_class_function_names(
+            self.MODULE, base64.b64decode(b"RmV0Y2hTdHVkZW50RGV0YWlscw==").decode()
+        )
+&gt;       self.assertIn(
+            base64.b64decode(
+                b"RmV0Y2hTdHVkZW50RGV0YWlscy5tYXBfY3N2X3RvX2NsYXNz"
+            ).decode(),
+            functions,
+            msg=f"The function "
+            f"`{base64.b64decode(b'RmV0Y2hTdHVkZW50RGV0YWlscy5tYXBfY3N2X3RvX2NsYXNz').decode()}` "
+            f"is not found in class "
+            f"`{base64.b64decode(b'RmV0Y2hTdHVkZW50RGV0YWlscw==').decode()}`, "
+            f"but it was marked as required.",
+        )
+E       AssertionError: 'FetchStudentDetails.map_csv_to_class' not found in ['FetchStudentDetails.__init__', 'FetchStudentDetails.get_attendance', 'FetchStudentDetails.get_data', 'FetchStudentDetails.get_super_student'] : The function `FetchStudentDetails.map_csv_to_class` is not found in class `FetchStudentDetails`, but it was marked as required.
+
+test/structure/test_fetch_student_details.py:447: AssertionError</failure></testcase><testcase classname="test.structure.test_fetch_student_details.StructureTestSuite" name="test_class_function_signature_match_fetchstudentdetails___init__" file="test/structure/test_fetch_student_details.py" line="43" time="0.001" /><testcase classname="test.structure.test_fetch_student_details.StructureTestSuite" name="test_class_function_signature_match_fetchstudentdetails_clean_input" file="test/structure/test_fetch_student_details.py" line="116" time="0.000"><failure message="AssertionError: 'FetchStudentDetails.clean_input' not found in ['FetchStudentDetails.__init__', 'FetchStudentDetails.get_attendance', 'FetchStudentDetails.get_data', 'FetchStudentDetails.get_super_student'] : The function `FetchStudentDetails.clean_input` is not found in class `FetchStudentDetails`, but it was marked as required.">self = &lt;test.structure.test_fetch_student_details.StructureTestSuite testMethod=test_class_function_signature_match_fetchstudentdetails_clean_input&gt;
+
+    def test_class_function_signature_match_fetchstudentdetails_clean_input(self):
+        classes = _get_class_names(self.MODULE)
+        self.assertIn(
+            base64.b64decode(b"RmV0Y2hTdHVkZW50RGV0YWlscw==").decode(),
+            classes,
+            msg=f"The class "
+            f"`{base64.b64decode(b'RmV0Y2hTdHVkZW50RGV0YWlscw==').decode()}` "
+            f"is not found, but it was marked as required.",
+        )
+        functions = _get_class_function_names(
+            self.MODULE, base64.b64decode(b"RmV0Y2hTdHVkZW50RGV0YWlscw==").decode()
+        )
+&gt;       self.assertIn(
+            base64.b64decode(b"RmV0Y2hTdHVkZW50RGV0YWlscy5jbGVhbl9pbnB1dA==").decode(),
+            functions,
+            msg=f"The function "
+            f"`{base64.b64decode(b'RmV0Y2hTdHVkZW50RGV0YWlscy5jbGVhbl9pbnB1dA==').decode()}` "
+            f"is not found in class "
+            f"`{base64.b64decode(b'RmV0Y2hTdHVkZW50RGV0YWlscw==').decode()}`, "
+            f"but it was marked as required.",
+        )
+E       AssertionError: 'FetchStudentDetails.clean_input' not found in ['FetchStudentDetails.__init__', 'FetchStudentDetails.get_attendance', 'FetchStudentDetails.get_data', 'FetchStudentDetails.get_super_student'] : The function `FetchStudentDetails.clean_input` is not found in class `FetchStudentDetails`, but it was marked as required.
+
+test/structure/test_fetch_student_details.py:129: AssertionError</failure></testcase><testcase classname="test.structure.test_fetch_student_details.StructureTestSuite" name="test_class_function_signature_match_fetchstudentdetails_get_attendance" file="test/structure/test_fetch_student_details.py" line="191" time="0.000" /><testcase classname="test.structure.test_fetch_student_details.StructureTestSuite" name="test_class_function_signature_match_fetchstudentdetails_get_data" file="test/structure/test_fetch_student_details.py" line="287" time="0.000" /><testcase classname="test.structure.test_fetch_student_details.StructureTestSuite" name="test_class_function_signature_match_fetchstudentdetails_get_super_student" file="test/structure/test_fetch_student_details.py" line="377" time="0.000" /><testcase classname="test.structure.test_fetch_student_details.StructureTestSuite" name="test_class_function_signature_match_fetchstudentdetails_map_csv_to_class" file="test/structure/test_fetch_student_details.py" line="458" time="0.000"><failure message="AssertionError: 'FetchStudentDetails.map_csv_to_class' not found in ['FetchStudentDetails.__init__', 'FetchStudentDetails.get_attendance', 'FetchStudentDetails.get_data', 'FetchStudentDetails.get_super_student'] : The function `FetchStudentDetails.map_csv_to_class` is not found in class `FetchStudentDetails`, but it was marked as required.">self = &lt;test.structure.test_fetch_student_details.StructureTestSuite testMethod=test_class_function_signature_match_fetchstudentdetails_map_csv_to_class&gt;
+
+    def test_class_function_signature_match_fetchstudentdetails_map_csv_to_class(self):
+        classes = _get_class_names(self.MODULE)
+        self.assertIn(
+            base64.b64decode(b"RmV0Y2hTdHVkZW50RGV0YWlscw==").decode(),
+            classes,
+            msg=f"The class "
+            f"`{base64.b64decode(b'RmV0Y2hTdHVkZW50RGV0YWlscw==').decode()}` "
+            f"is not found, but it was marked as required.",
+        )
+        functions = _get_class_function_names(
+            self.MODULE, base64.b64decode(b"RmV0Y2hTdHVkZW50RGV0YWlscw==").decode()
+        )
+&gt;       self.assertIn(
+            base64.b64decode(
+                b"RmV0Y2hTdHVkZW50RGV0YWlscy5tYXBfY3N2X3RvX2NsYXNz"
+            ).decode(),
+            functions,
+            msg=f"The function "
+            f"`{base64.b64decode(b'RmV0Y2hTdHVkZW50RGV0YWlscy5tYXBfY3N2X3RvX2NsYXNz').decode()}` "
+            f"is not found in class "
+            f"`{base64.b64decode(b'RmV0Y2hTdHVkZW50RGV0YWlscw==').decode()}`, "
+            f"but it was marked as required.",
+        )
+E       AssertionError: 'FetchStudentDetails.map_csv_to_class' not found in ['FetchStudentDetails.__init__', 'FetchStudentDetails.get_attendance', 'FetchStudentDetails.get_data', 'FetchStudentDetails.get_super_student'] : The function `FetchStudentDetails.map_csv_to_class` is not found in class `FetchStudentDetails`, but it was marked as required.
+
+test/structure/test_fetch_student_details.py:471: AssertionError</failure></testcase><testcase classname="test.structure.test_student.StructureTestSuite" name="test_class_exists_student" file="test/structure/test_student.py" line="11" time="0.000" /><testcase classname="test.structure.test_student.StructureTestSuite" name="test_class_function_exists_student___init__" file="test/structure/test_student.py" line="21" time="0.000" /><testcase classname="test.structure.test_student.StructureTestSuite" name="test_class_function_signature_match_student___init__" file="test/structure/test_student.py" line="43" time="0.000"><failure message="AssertionError: 'name' != 'student_id'&#10;- name&#10;+ student_id&#10; : The argument #1 of function `Student.__init__` in class `Student` should be called `name`.">self = &lt;test.structure.test_student.StructureTestSuite testMethod=test_class_function_signature_match_student___init__&gt;
+
+    def test_class_function_signature_match_student___init__(self):
+        classes = _get_class_names(self.MODULE)
+        self.assertIn(
+            base64.b64decode(b"U3R1ZGVudA==").decode(),
+            classes,
+            msg=f"The class "
+            f"`{base64.b64decode(b'U3R1ZGVudA==').decode()}` "
+            f"is not found, but it was marked as required.",
+        )
+        functions = _get_class_function_names(
+            self.MODULE, base64.b64decode(b"U3R1ZGVudA==").decode()
+        )
+        self.assertIn(
+            base64.b64decode(b"U3R1ZGVudC5fX2luaXRfXw==").decode(),
+            functions,
+            msg=f"The function "
+            f"`{base64.b64decode(b'U3R1ZGVudC5fX2luaXRfXw==').decode()}` "
+            f"is not found in class "
+            f"`{base64.b64decode(b'U3R1ZGVudA==').decode()}`, "
+            f"but it was marked as required.",
+        )
+        args = _get_class_function_arg_names(
+            self.MODULE,
+            base64.b64decode(b"U3R1ZGVudA==").decode(),
+            base64.b64decode(b"U3R1ZGVudC5fX2luaXRfXw==").decode(),
+        )
+        self.assertEqual(
+            8,
+            len(args),
+            msg=f"The function "
+            f"`{base64.b64decode(b'U3R1ZGVudC5fX2luaXRfXw==').decode()}` "
+            f"in class "
+            f"`{base64.b64decode(b'U3R1ZGVudA==').decode()}` "
+            f"should have 8 argument(s).",
+        )
+        args = _get_class_function_arg_names(
+            self.MODULE,
+            base64.b64decode(b"U3R1ZGVudA==").decode(),
+            base64.b64decode(b"U3R1ZGVudC5fX2luaXRfXw==").decode(),
+        )
+        self.assertEqual(
+            base64.b64decode(b"c2VsZg==").decode(),
+            args[0],
+            msg=f"The argument #0 of function "
+            f"`{base64.b64decode(b'U3R1ZGVudC5fX2luaXRfXw==').decode()}` "
+            f"in class "
+            f"`{base64.b64decode(b'U3R1ZGVudA==').decode()}` "
+            f"should be called "
+            f"`self`.",
+        )
+        args = _get_class_function_arg_names(
+            self.MODULE,
+            base64.b64decode(b"U3R1ZGVudA==").decode(),
+            base64.b64decode(b"U3R1ZGVudC5fX2luaXRfXw==").decode(),
+        )
+&gt;       self.assertEqual(
+            base64.b64decode(b"bmFtZQ==").decode(),
+            args[1],
+            msg=f"The argument #1 of function "
+            f"`{base64.b64decode(b'U3R1ZGVudC5fX2luaXRfXw==').decode()}` "
+            f"in class "
+            f"`{base64.b64decode(b'U3R1ZGVudA==').decode()}` "
+            f"should be called "
+            f"`name`.",
+        )
+E       AssertionError: 'name' != 'student_id'
+E       - name
+E       + student_id
+E        : The argument #1 of function `Student.__init__` in class `Student` should be called `name`.
+
+test/structure/test_student.py:99: AssertionError</failure></testcase></testsuite></testsuites>
